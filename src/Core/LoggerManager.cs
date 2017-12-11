@@ -144,12 +144,12 @@ namespace log4net.Core
 					}
 				}
 			}
-#endif
 			// Create the DefaultRepositorySelector if not configured above
 			if (s_repositorySelector == null)
 			{
 				s_repositorySelector = new DefaultRepositorySelector(typeof(log4net.Repository.Hierarchy.Hierarchy));
 			}
+#endif
 		}
 
 		/// <summary>
