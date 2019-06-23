@@ -332,6 +332,10 @@ namespace log4net.Core
 	{
 		private readonly static Type declaringType = typeof(LoggingEvent);
 
+#if NETCF || NETCF_2_0
+	    private static readonly int startTick = Environment.TickCount;
+#endif
+
 		#region Public Instance Constructors
 
 		/// <summary>
@@ -367,7 +371,11 @@ namespace log4net.Core
 			m_data.Level = level;
 
 			// Store the event creation time
+#if !NETCF && !NETCF_2_0
 			m_data.TimeStampUtc = DateTime.UtcNow;
+#else
+			m_data.TimeStampUtc = DateTime.UtcNow.AddMilliseconds(Environment.TickCount - startTick);
+#endif
 		}
 
 		/// <summary>
