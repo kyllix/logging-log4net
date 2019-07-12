@@ -374,7 +374,7 @@ namespace log4net.Core
 #if !NETCF && !NETCF_2_0
 			m_data.TimeStampUtc = DateTime.UtcNow;
 #else
-			m_data.TimeStampUtc = DateTime.UtcNow.AddMilliseconds(Environment.TickCount - startTick);
+			m_data.TimeStampUtc = DateTime.UtcNow.AddMilliseconds((Environment.TickCount - startTick) % 1000);
 #endif
 		}
 
